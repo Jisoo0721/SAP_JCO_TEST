@@ -15,7 +15,7 @@ public class CustomDestinationDataProvider
         
         public Properties getDestinationProperties(String destinationName)
         {
-            if(destinationName.equals("ABAP_AS_WITH_POOL") && ABAP_AS_WITH_POOL_properties!=null)
+            if(destinationName.equals("ABAP_AS1") && ABAP_AS_WITH_POOL_properties!=null)
                 return ABAP_AS_WITH_POOL_properties;
             
             return null;
@@ -38,14 +38,14 @@ public class CustomDestinationDataProvider
             if(properties==null)
             {
                 ABAP_AS_WITH_POOL_properties = null;
-                eL.deleted("ABAP_AS_WITH_POOL");
+                eL.deleted("ABAP_AS1");
             }
             else 
             {
                 if(ABAP_AS_WITH_POOL_properties==null || !ABAP_AS_WITH_POOL_properties.equals(properties))
                 {
 	                ABAP_AS_WITH_POOL_properties = properties;
-                    eL.updated("ABAP_AS_WITH_POOL");
+                    eL.updated("ABAP_AS1");
                 }
             }
         }

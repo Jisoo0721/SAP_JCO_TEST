@@ -1,7 +1,6 @@
 package gs.scm.ItemMaster;
 import com.sap.conn.jco.JCoException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gs.scm.test.TestJcoFunctionCalls;
@@ -9,9 +8,7 @@ import gs.scm.test.TestJcoFunctionCalls;
 @Service
 public class ItemService {
 
-	@Autowired
 	protected ItemMasterAPI itemApi;
-	@Autowired
 	protected TestJcoFunctionCalls test;
 
 	public void getFlightList(ItemMasterTable params) {

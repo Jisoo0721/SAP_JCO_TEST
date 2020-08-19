@@ -15,7 +15,8 @@ public class JcoConnection {
 	public static void createDestination() {
 		Properties connectProperties = new Properties();
 		connectProperties.setProperty(DestinationDataProvider.JCO_POOL_CAPACITY, "100");
-		connectProperties.setProperty(DestinationDataProvider.JCO_LANG,   "ko");
+        connectProperties.setProperty(DestinationDataProvider.JCO_LANG, "KO");
+		connectProperties.setProperty(DestinationDataProvider.JCO_MSSERV,   "3670");        
 		connectProperties.setProperty(DestinationDataProvider.JCO_ASHOST, "203.245.89.96");
 		connectProperties.setProperty(DestinationDataProvider.JCO_SYSNR,  "70");
 		connectProperties.setProperty(DestinationDataProvider.JCO_CLIENT, "100");

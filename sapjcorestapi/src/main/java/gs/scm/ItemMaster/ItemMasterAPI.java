@@ -9,16 +9,27 @@ import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoParameterList;
 import com.sap.conn.jco.JCoTable;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import gs.scm.Constants;
 import gs.scm.UTIL.DBUtil;
-
+import gs.scm.test.TestJcoFunctionCalls;
+@Controller
+@RequestMapping(value = "/", method = RequestMethod.GET)
 public class ItemMasterAPI
 {
 	public CallableStatement cs = null;
-	public Connection DBCon = null;	
+	public Connection DBCon = null;
+	protected TestJcoFunctionCalls test;	
 	{			
 		try {
 
+			test.pingDestination();
+			test.requestSystemDetails();
+			test.callWithStructure();
+						
 			// 서버 연결정보 세팅 
 			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
 
