@@ -10,15 +10,15 @@ import com.sap.conn.jco.JCoStructure;
 import com.sap.conn.jco.JCoTable;
 
 import gs.scm.Constants;
+import gs.scm.JcoConnection;
 
 public class TestJcoFunctionCalls {
 	
-    //private static JcoConnection con = new JcoConnection();
-    
     // 목적지 Ping Test
 	public void pingDestination() throws JCoException
     {
         try {
+            JcoConnection.createDestination();
             JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
             System.out.println("Pinging " + jcoDestination.getDestinationID() + " ...");
             jcoDestination.ping();
