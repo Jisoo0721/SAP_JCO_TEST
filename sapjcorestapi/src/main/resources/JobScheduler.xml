@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1. 동작 시키고자 하는 클래스 -->
+	<bean id="jobSchedule"
+			class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="gs.scm.jobSchedule" />
+	</bean>
+	
+	<!-- 반복 작업 상세 정의 
+		트리거 : 배치를 실행시켜라 -->
+	<bean id="jobScheduleTrigger"
+			class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		
+		<!-- CronTab : 실행 주기 설정. (Cron : 리눅스 스케줄러. 주기마다 수행) -->
+		
+		<!-- 1 * * * * 매 분 1초에 testJob을 수행해라.
+			0/5 : 5초에 한번 -->
+		<property name="jobDetail" ref="jobSchedule" />
+											<!-- 초, 분, 시, 일, 월 -->
+		<property name="cronExpression" value="0 0 5 * * ?" />
+	</bean>
+	
+	<bean id="schedularFactoryBean"
+			class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="jobScheduleTrigger"/>
+			</list>
+		</property>
+		<property name="quartzProperties" >
+			<props>
+				<!-- Batch Job 실행시킬 Thread Pool -->
+				<prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+				<!-- Thread 수 -->
+				<prop key="org.quartz.threadPool.threadCount">3</prop>
+				<!-- Thread 동작 우선순위 -->
+				<prop key="org.quartz.threadPool.threadPriority">4</prop>
+				<!-- 쓰레드 관리 방식 (RAM) -->
+				<prop key="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</prop>
+				<!-- 동작하지 않을 때 대기할 시간 (ms) 60초 지나도 동작하지 않을 경우 Batch Job 실행되지 않는다. -->
+				<prop key="org.quartz.jobStore.misfireThreshold">60000</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
+

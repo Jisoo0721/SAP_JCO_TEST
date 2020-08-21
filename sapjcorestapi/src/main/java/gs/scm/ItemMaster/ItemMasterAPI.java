@@ -10,7 +10,6 @@ import java.util.Map;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoParameterList;
 import com.sap.conn.jco.JCoTable;
 
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import gs.scm.Constants;
 import gs.scm.JcoConnection;
-import gs.scm.UTIL.DBUtil;
+// import gs.scm.UTIL.DBUtil;
 import gs.scm.test.TestJcoFunctionCalls;
 
 @Controller
@@ -29,7 +28,7 @@ public class ItemMasterAPI
 	public CallableStatement cs = null;
 	public Connection DBCon = null;
 	protected TestJcoFunctionCalls test;	
-	{			
+	public static void itemBatchTest(){		
 		try {
 			
 			// 연결정보 세팅
